@@ -1,0 +1,15 @@
+@import "src/styles/components/_button";
+
+.edit-item {
+  display: flex;
+  justify-content: space-around;
+}
+
+.todo-text {
+  flex-grow: 2;
+}
+
+.todo-text input {
+  font-size: 1.5rem;
+  width: 90%;
+}

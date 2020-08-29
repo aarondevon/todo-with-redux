@@ -1,0 +1,51 @@
+import Todo from "../../models/Todo";
+
+const initialState = {todos: []};
+
+export const addTodoReducer = (state = initialState, action: any) => {
+    switch (action.type) {
+        case 'ADD_TODO':
+            //console.log(state.todos);
+            return {todos: state.todos.concat(action.todo)};
+        case 'COMPLETED':
+            return {todos: state.todos.map((todo: Todo) => {
+
+                if (action.id === todo.getId()) {
+                    todo.setCompleted(!todo.getCompleted());
+                }
+                    console.log(todo);
+                return todo;
+                })} // map through todos, and flip "completed" flag on the one in question
+        case 'EDIT':
+            return {todos: state.todos.map((todo: Todo) => {
+                if (action.id === todo.getId()) {
+                    todo.setInEdit(true)
+                }
+                return todo
+                })}
+        case 'SAVE':
+            return {todos: state.todos.map((todo: Todo) => {
+                    if (action.id === todo.getId()) {
+                        console.log('saving');
+                        todo.setText(action.todoText)
+                        todo.setInEdit(false);
+                    }
+                    return todo
+                })}
+        case 'CANCEL':
+            return {todos: state.todos.map((todo: Todo) => {
+                    if (action.id === todo.getId()) {
+                        todo.setInEdit(false)
+                    }
+                    return todo
+                })}
+        case 'DELETE':
+            return {todos: state.todos.filter((todo: Todo) => {
+                if (action.id !== todo.getId()) {
+                    return todo;
+                }
+            })}
+        default:
+            return state;
+    }
+};

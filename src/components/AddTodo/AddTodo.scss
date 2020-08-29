@@ -1,0 +1,13 @@
+@import "src/styles/components/_button";
+
+.todo-wrapper {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+#todo-input {
+  flex-grow: 2;
+  font-size: 2rem;
+  padding-left: .5rem;
+}
