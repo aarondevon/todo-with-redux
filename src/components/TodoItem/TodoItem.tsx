@@ -29,7 +29,7 @@ class TodoItem extends React.Component<TodoItemProps, todoItemState> {
   render() {
     return (
       <div id="todo-item">
-
+          <p>{this.props.todo.getCategory()}</p>
         <p id="todo-text" className={this.props.todo.getCompleted()? "completed" : ""}>
             {console.log(this.props.todo)}
             {console.log(this.props.todo.getCompleted())}
