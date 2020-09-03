@@ -25,11 +25,12 @@ class AddTodo extends React.Component<AddTodoProps, AddTodoState> {
     toDoCategory: 'General'
   }
 
-  handleAddTodo() {
+  handleAddTodo(event: React.MouseEvent<HTMLButtonElement> ) {
     this.props.addTodo(this.state.todoInput.trim(), this.state.toDoCategory);
     this.setState( {
       todoInput: ''
     })
+      event.preventDefault();
   }
 
   handleInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -47,14 +48,17 @@ class AddTodo extends React.Component<AddTodoProps, AddTodoState> {
   render() {
     return (
       <div className="container">
-          <ToDoCategory category= '' onCategoryChange={this.handleCategoryChange}/>
-          <div className="todo-wrapper">
-              <input id="todo-input" value={this.state.todoInput} onChange={(event) => {
-                  this.handleInputChange(event);
-              }} type="text"/>
+          <form>
+              <ToDoCategory category= '' onCategoryChange={this.handleCategoryChange}/>
+              <div className="todo-wrapper">
+                  <input id="todo-input" value={this.state.todoInput} onChange={(event) => {
+                      this.handleInputChange(event);
+                  }} type="text"/>
 
-              <button className="button" onClick={() => this.handleAddTodo()}>Add Todo</button>
-          </div>
+                  <button type="submit" className="button" onClick={(event) => this.handleAddTodo(event)}>Add Todo</button>
+              </div>
+          </form>
+
 
       </div>
     )
