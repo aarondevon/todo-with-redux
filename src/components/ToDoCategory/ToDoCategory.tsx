@@ -2,12 +2,13 @@ import React, {ChangeEvent} from 'react';
 
 interface toDoCategoryProps {
     onCategoryChange: any,
+    category: string
 }
 
 
 export default class ToDoCategory extends React.Component<toDoCategoryProps, any> {
     state = {
-        toDoCategory: 'general'
+        toDoCategory: this.props.category !== '' ? this.props.category : 'general'
     }
 
     handleCategoryChange(event: ChangeEvent<HTMLSelectElement>) {

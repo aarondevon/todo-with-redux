@@ -55,7 +55,7 @@ class EditTodo extends React.Component<EditProps, EditState> {
   render() {
     return (
       <div className="edit-item">
-          <ToDoCategory onCategoryChange={this.handleCategoryChange.bind(this)} />
+          <ToDoCategory category={this.props.todo.getCategory()} onCategoryChange={this.handleCategoryChange.bind(this)} />
         <p className="todo-text">
           <input type="text" value={this.state.todoText} onChange={(event) => this.handleOnChange(event)}/>
         </p>
