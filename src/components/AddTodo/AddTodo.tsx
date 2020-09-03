@@ -1,25 +1,32 @@
 import React, {ChangeEvent} from 'react';
-import Todo from "../../models/Todo";
+import Todo from '../../models/Todo';
+import ToDoCategory from '../ToDoCategory/ToDoCategory';
 import {connect} from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import './AddTodo.scss'
 
 interface AddTodoProps {
-    addTodo: (todoText: string) => void
+    addTodo: (todoText: string, toDoCategory: string) => void
 }
 
 interface AddTodoState {
-  todoInput: string
+    todoInput: string,
+    toDoCategory: string
 
 }
 
 class AddTodo extends React.Component<AddTodoProps, AddTodoState> {
+    constructor(props: AddTodoProps) {
+        super(props);
+        this.handleCategoryChange = this.handleCategoryChange.bind(this);
+    }
   state = {
-    todoInput: ''
+    todoInput: '',
+    toDoCategory: 'General'
   }
 
   handleAddTodo() {
-    this.props.addTodo(this.state.todoInput.trim());
+    this.props.addTodo(this.state.todoInput.trim(), this.state.toDoCategory);
     this.setState( {
       todoInput: ''
     })
@@ -31,9 +38,16 @@ class AddTodo extends React.Component<AddTodoProps, AddTodoState> {
     });
   }
 
+  handleCategoryChange(category: string) {
+    this.setState({
+        toDoCategory: category
+    })
+  };
+
   render() {
     return (
       <div className="container">
+          <ToDoCategory testTest='test' onCategoryChange={this.handleCategoryChange}/>
           <div className="todo-wrapper">
               <input id="todo-input" value={this.state.todoInput} onChange={(event) => {
                   this.handleInputChange(event);
@@ -52,9 +66,9 @@ class AddTodo extends React.Component<AddTodoProps, AddTodoState> {
 // });
 
 const mapDispatchToProps = (dispatch:any) => ({
-   addTodo: (todoInput: string) => dispatch({
+   addTodo: (todoInput: string, toDoCategory: string) => dispatch({
        type: 'ADD_TODO',
-       todo: new Todo(todoInput, false, false, uuidv4())
+       todo: new Todo(todoInput, toDoCategory, false, false, uuidv4())
    })
 });
 
