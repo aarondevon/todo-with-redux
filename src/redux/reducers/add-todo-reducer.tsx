@@ -27,7 +27,9 @@ export const addTodoReducer = (state = initialState, action: any) => {
             return {todos: state.todos.map((todo: Todo) => {
                     if (action.id === todo.getId()) {
                         console.log('saving');
+                        console.log('the category is', action.toDoCategory);
                         todo.setText(action.todoText)
+                        todo.setCategory(action.toDoCategory);
                         todo.setInEdit(false);
                     }
                     return todo
