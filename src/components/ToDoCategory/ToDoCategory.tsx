@@ -2,7 +2,6 @@ import React, {ChangeEvent} from 'react';
 
 interface toDoCategoryProps {
     onCategoryChange: any,
-    testTest: string
 }
 
 
@@ -16,7 +15,6 @@ export default class ToDoCategory extends React.Component<toDoCategoryProps, any
             toDoCategory: event.target.value
         });
 
-        console.log(this.props.testTest);
         this.props.onCategoryChange(event.target.value);
     };
 
