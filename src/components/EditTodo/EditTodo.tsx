@@ -59,12 +59,10 @@ class EditTodo extends React.Component<EditProps, EditState> {
         <p className="todo-text">
           <input type="text" value={this.state.todoText} onChange={(event) => this.handleOnChange(event)}/>
         </p>
-          <div>
+          <div className="edit-buttons">
               <button className="button" onClick={() => this.handleSaveTodo()}>Save</button>
               <button className="button" onClick={() => this.handleCancelTodo()}>Cancel</button>
           </div>
-
-
       </div>
     );
   }

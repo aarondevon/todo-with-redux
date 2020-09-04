@@ -49,7 +49,11 @@ class AddTodo extends React.Component<AddTodoProps, AddTodoState> {
     return (
       <div className="container">
           <form>
-              <ToDoCategory category= '' onCategoryChange={this.handleCategoryChange}/>
+              <div>
+                  <h2>Category</h2>
+                  <ToDoCategory category= '' onCategoryChange={this.handleCategoryChange}/>
+              </div>
+
               <div className="todo-wrapper">
                   <input id="todo-input" value={this.state.todoInput} onChange={(event) => {
                       this.handleInputChange(event);
