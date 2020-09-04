@@ -4,6 +4,8 @@ import ToDoCategory from '../ToDoCategory/ToDoCategory';
 import {connect} from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import './AddTodo.scss'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSave, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 
 interface AddTodoProps {
     addTodo: (todoText: string, toDoCategory: string) => void
@@ -59,7 +61,7 @@ class AddTodo extends React.Component<AddTodoProps, AddTodoState> {
                       this.handleInputChange(event);
                   }} type="text"/>
 
-                  <button type="submit" className="button" onClick={(event) => this.handleAddTodo(event)}>Add Todo</button>
+                  <button type="submit" className="button" onClick={(event) => this.handleAddTodo(event)}>Add todo</button>
               </div>
           </form>
 
