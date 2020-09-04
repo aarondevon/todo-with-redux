@@ -4,6 +4,7 @@ import {combineReducers, createStore} from 'redux';
 import AddTodo from '../AddTodo/AddTodo';
 import DisplayTodos from '../DisplayTodos/DisplayTodos'
 import '../../styles/styles.scss'
+import './App.scss';
 import {addTodoReducer} from "../../redux/reducers/add-todo-reducer";
 
 
@@ -24,8 +25,11 @@ class App extends React.Component<any, any> {
         return (
             <Provider store={store}>
             <div id="app">
-                <AddTodo />
-                <DisplayTodos/>
+                <h1>todos</h1>
+                <div className="todo-form">
+                    <AddTodo />
+                    <DisplayTodos/>
+                </div>
                 {/*<div className="todos">*/}
                 {/*    {this.getPrintTodos()}*/}
                 {/*</div>*/}
