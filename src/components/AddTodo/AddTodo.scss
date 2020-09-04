@@ -3,11 +3,12 @@
 .todo-wrapper {
   margin-top: 1.5rem;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
 #todo-input {
-  flex-grow: 2;
+  flex-grow: 1;
   font-size: 2rem;
   padding-left: .5rem;
 }
