@@ -18,7 +18,6 @@ export default class ToDoCategory extends React.Component<toDoCategoryProps, any
         this.setState({
             toDoCategory: event.target.value
         });
-
         this.props.onCategoryChange(event.target.value);
     };
 
