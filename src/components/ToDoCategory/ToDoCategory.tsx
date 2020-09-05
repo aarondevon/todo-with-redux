@@ -1,4 +1,5 @@
 import React, {ChangeEvent} from 'react';
+import './ToDoCategory.scss';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
