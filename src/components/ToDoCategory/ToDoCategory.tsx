@@ -1,4 +1,6 @@
 import React, {ChangeEvent} from 'react';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 interface toDoCategoryProps {
     onCategoryChange: any,
@@ -21,15 +23,23 @@ export default class ToDoCategory extends React.Component<toDoCategoryProps, any
 
     render() {
         return (
-            <div>
-                <select value={this.state.toDoCategory} onChange={(event) => {
+            <div className="category-dropdown-container">
+                <Select value={this.state.toDoCategory} onChange={(event:any) => {
                     this.handleCategoryChange(event);
                 }
                 }>
-                    <option value="general">General</option>
-                    <option value="grocery">Grocery</option>
-                    <option value="work">Work</option>
-                </select>
+                    <MenuItem value="general">General</MenuItem>
+                    <MenuItem value="grocery">Grocery</MenuItem>
+                    <MenuItem value="work">Work</MenuItem>
+                </Select>
+                {/*<select className="custom-select" value={this.state.toDoCategory} onChange={(event) => {*/}
+                {/*    this.handleCategoryChange(event);*/}
+                {/*}*/}
+                {/*}>*/}
+                {/*    <option value="general">General</option>*/}
+                {/*    <option value="grocery">Grocery</option>*/}
+                {/*    <option value="work">Work</option>*/}
+                {/*</select>*/}
             </div>
         )
     }
