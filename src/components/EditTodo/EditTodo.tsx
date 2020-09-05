@@ -3,8 +3,6 @@ import {connect} from "react-redux";
 import './EditTodo.scss';
 import Todo from '../../models/Todo';
 import ToDoCategory from "../ToDoCategory/ToDoCategory";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 
 interface EditProps {
     todo: Todo,
@@ -62,8 +60,8 @@ class EditTodo extends React.Component<EditProps, EditState> {
           <input type="text" value={this.state.todoText} onChange={(event) => this.handleOnChange(event)}/>
         </p>
           <div className="edit-buttons">
-              <div onClick={() => this.handleSaveTodo()}><FontAwesomeIcon icon={faSave} size="3x"/></div>
-              <div onClick={() => this.handleCancelTodo()}><FontAwesomeIcon icon={faWindowClose} size="3x"/></div>
+              <button className="button save-edit" onClick={() => this.handleSaveTodo()}>Save</button>
+              <button className="button" onClick={() => this.handleCancelTodo()}>Cancel</button>
           </div>
       </div>
     );

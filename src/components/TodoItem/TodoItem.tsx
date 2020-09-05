@@ -29,7 +29,7 @@ class TodoItem extends React.Component<TodoItemProps, todoItemState> {
   render() {
     return (
       <div id="todo-item">
-          <p>{this.props.todo.getCategory()}</p>
+
         <p id="todo-text" className={this.props.todo.getCompleted()? "completed" : ""}>
             {console.log(this.props.todo)}
             {console.log(this.props.todo.getCompleted())}
@@ -37,7 +37,7 @@ class TodoItem extends React.Component<TodoItemProps, todoItemState> {
                  onChange={(event) => this.handleCompleteTodo(event)}/>
           {this.props.todo.getText()}
         </p>
-          <div>
+          <div className="edit-delete-container">
             <button className="button edit" onClick={() => this.props.onEdit(this.props.todo.getId())}>Edit</button>
             <button className="button delete" onClick={() => this.props.onDelete(this.props.todo.getId())}>Delete</button>
           </div>
