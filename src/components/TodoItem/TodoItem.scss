@@ -1,4 +1,4 @@
-@import "src/styles/components/_button";
+
 
 #todo-item {
   display: flex;
@@ -18,5 +18,9 @@
 input#checkbox {
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.edit-delete-section {
+  display: flex;
 }
 
