@@ -5,10 +5,25 @@ import TodoItem from "../TodoItem/TodoItem";
 import EditTodo from "../EditTodo/EditTodo";
 
 class DisplayTodos extends React.Component<any, any> {
-    getPrintTodos() {
-        return this.props.todos.todos.map((todo:Todo) => {
+
+    getCollection() {
+        return this.props.todos.todos.filter((todo: Todo) => {
+            if (this.props.category.category === todo.getCategory()) {
+                console.log(this.props.category.category);
+                return todo;
+            } else if(this.props.category.category === 'all') {
+                console.log(this.props.category.category);
+                return todo;
+            }
+        })
+    }
+
+    getPrintTodos(collection: any) {
+
+        console.log(collection);
+        return collection.map((todo:Todo) => {
             if (todo.getInEdit()) {
-               return <EditTodo key={todo.getId()} todo={todo} isInEdit={todo.getInEdit()}/>
+                return <EditTodo key={todo.getId()} todo={todo} isInEdit={todo.getInEdit()}/>
             }
             return <TodoItem key={todo.getId()} todo={todo} isCompleted={todo.getCompleted()}/>;
         })
@@ -17,7 +32,7 @@ class DisplayTodos extends React.Component<any, any> {
     render() {
         return (
             <div>
-                {this.getPrintTodos()}
+                {this.getPrintTodos(this.getCollection())}
             </div>
 
         );
@@ -25,7 +40,8 @@ class DisplayTodos extends React.Component<any, any> {
 }
 
 const mapPropsToState = (state: any) => ({
-    todos: state.addTodos
+    todos: state.addTodos,
+    category: state.category
 });
 
 export default connect(mapPropsToState)(DisplayTodos);
