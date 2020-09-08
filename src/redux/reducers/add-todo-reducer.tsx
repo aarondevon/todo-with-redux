@@ -47,6 +47,12 @@ export const addTodoReducer = (state = initialState, action: any) => {
                     return todo;
                 }
             })}
+        case 'CLEAR_COMPLETED':
+            return {todos: state.todos.filter((todo: Todo) => {
+                if (!todo.getCompleted()) {
+                    return todo;
+                }
+            })}
         default:
             return state;
     }
