@@ -69,10 +69,6 @@ class AddTodo extends React.Component<AddTodoProps, AddTodoState> {
   }
 }
 
-// const mapDispatchToProps2 = (dispatch: any) => ({
-//       addTodo: (todoInput: string) => dispatch({  type: 'ADD_TODO', todo: new Todo(todoInput, false, false, uuidv4())})
-// });
-
 const mapDispatchToProps = (dispatch:any) => ({
    addTodo: (todoInput: string, toDoCategory: string) => dispatch({
        type: 'ADD_TODO',
