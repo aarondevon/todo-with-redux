@@ -6,6 +6,7 @@ import './index.css';
 import {addTodoReducer} from "./redux/reducers/add-todo-reducer";
 import {categoryReducer} from "./redux/reducers/category-reducer";
 import App from './components/App/App';
+import {loadState, saveState} from './models/local-storage';
 import * as serviceWorker from './serviceWorker';
 
 declare global {
@@ -14,11 +15,18 @@ declare global {
     }
 }
 
+const persistedState = loadState();
 const store = createStore(
     combineReducers({
         addTodos: addTodoReducer,
         category: categoryReducer
-    }), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+    }),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+store.subscribe(() => {
+    saveState({
+        todos: store.getState().addTodos
+    });
+})
 
 ReactDOM.render(
   <React.StrictMode>
