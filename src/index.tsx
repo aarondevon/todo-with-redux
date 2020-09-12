@@ -6,7 +6,7 @@ import './index.css';
 import {addTodoReducer} from "./redux/reducers/add-todo-reducer";
 import {categoryReducer} from "./redux/reducers/category-reducer";
 import App from './components/App/App';
-import {loadState, saveState} from './models/local-storage';
+import {saveTodosState} from './models/local-storage';
 import * as serviceWorker from './serviceWorker';
 
 declare global {
@@ -15,17 +15,17 @@ declare global {
     }
 }
 
-const persistedState = loadState();
 const store = createStore(
     combineReducers({
         addTodos: addTodoReducer,
         category: categoryReducer
     }),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
+
 store.subscribe(() => {
-    saveState({
-        todos: store.getState().addTodos
-    });
+    // @todo solve: #1 the TS issue, #2 the extra nesting of .todos
+    // @ts-ignore
+    saveTodosState(store.getState().addTodos.todos);
 })
 
 ReactDOM.render(

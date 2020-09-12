@@ -1,6 +1,10 @@
 import Todo from "../../models/Todo";
+import {loadTodosState} from "../../models/local-storage";
 
-const initialState = {todos: []};
+const stateFromLocalStorage = loadTodosState();
+console.log('state from local storage', stateFromLocalStorage);
+
+const initialState = {todos: stateFromLocalStorage};
 
 export const addTodoReducer = (state = initialState, action: any) => {
     switch (action.type) {
