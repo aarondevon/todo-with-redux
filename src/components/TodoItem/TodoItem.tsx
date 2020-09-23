@@ -31,8 +31,7 @@ class TodoItem extends React.Component<TodoItemProps, todoItemState> {
       <div id="todo-item">
 
         <p id="todo-text" className={this.props.todo.getCompleted()? "completed" : ""}>
-            {console.log(this.props.todo)}
-            {console.log(this.props.todo.getCompleted())}
+
           <input type="checkbox" id={`${this.props.todo.getCompleted()}`} checked={this.props.isCompleted}
                  onChange={(event) => this.handleCompleteTodo(event)}/>
           {this.props.todo.getText()}

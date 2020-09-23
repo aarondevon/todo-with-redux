@@ -9,10 +9,8 @@ class DisplayTodos extends React.Component<any, any> {
     getCollection() {
         return this.props.todos.todos.filter((todo: Todo) => {
             if (this.props.category.category === todo.getCategory()) {
-                console.log(this.props.category.category);
                 return todo;
             } else if(this.props.category.category === 'all') {
-                console.log(this.props.category.category);
                 return todo;
             }
         })
@@ -20,7 +18,6 @@ class DisplayTodos extends React.Component<any, any> {
 
     getPrintTodos(collection: any) {
 
-        console.log(collection);
         return collection.map((todo:Todo) => {
             if (todo.getInEdit()) {
                 return <EditTodo key={todo.getId()} todo={todo} isInEdit={todo.getInEdit()}/>
