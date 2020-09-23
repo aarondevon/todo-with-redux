@@ -2,14 +2,12 @@ import Todo from "../../models/Todo";
 import {loadTodosState} from "../../models/local-storage";
 
 const stateFromLocalStorage = loadTodosState();
-console.log('state from local storage', stateFromLocalStorage);
 
-const initialState = {todos: stateFromLocalStorage};
+const initialState = {todos: stateFromLocalStorage || []};
 
 export const addTodoReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case 'ADD_TODO':
-            //console.log(state.todos);
             return {todos: state.todos.concat(action.todo)};
         case 'COMPLETED':
             return {todos: state.todos.map((todo: Todo) => {
