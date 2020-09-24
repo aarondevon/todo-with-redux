@@ -5,6 +5,7 @@ import '../../styles/styles.scss'
 import './App.scss';
 import SortButtons from "../SortButtons/SortButtons";
 import ClearCompleted from "../ClearCompleted/ClearCompleted";
+import '../../firebase/firebase';
 
 
 class App extends React.Component<any, any> {
