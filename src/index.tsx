@@ -20,13 +20,13 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
     combineReducers({
-        todos: todoReducer,
-        category: categoryReducer
+        todoReducer,
+        categoryReducer
     }), composeEnhancers(applyMiddleware(thunk)));
 
 
 store.subscribe(() => {
-    saveTodosState(store.getState().todos.todos);
+    saveTodosState(store.getState().todoReducer.todos);
 });
 
 ReactDOM.render(

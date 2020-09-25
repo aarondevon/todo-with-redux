@@ -7,12 +7,12 @@ import EditTodo from "../EditTodo/EditTodo";
 class DisplayTodos extends React.Component<any, any> {
 
     getCollection() {
-        return this.props.todos.todos.filter((todo: Todo) => {
-            if (this.props.category.category === todo.getCategory()) {
-                console.log(this.props.category.category);
+        return this.props.todoReducer.todos.filter((todo: Todo) => {
+            if (this.props.categoryReducer.category === todo.getCategory()) {
+                console.log(this.props.categoryReducer.category);
                 return todo;
-            } else if(this.props.category.category === 'all') {
-                console.log(this.props.category.category);
+            } else if(this.props.categoryReducer.category === 'all') {
+                console.log(this.props.categoryReducer.category);
                 return todo;
             }
         })
@@ -40,8 +40,8 @@ class DisplayTodos extends React.Component<any, any> {
 }
 
 const mapPropsToState = (state: any) => ({
-    todos: state.todos,
-    category: state.category
+    todoReducer: state.todoReducer,
+    categoryReducer: state.categoryReducer
 });
 
 export default connect(mapPropsToState)(DisplayTodos);
