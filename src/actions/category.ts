@@ -7,12 +7,10 @@ export const SORT = 'SORT';
 
 export function doSort(category: string) {
     return function inner(dispatch: any) {
-        setTimeout(() => {
-            dispatch({
-                type: SORT,
-                category: category
-            });
-        }, 3000);
+        dispatch({
+            type: SORT,
+            category: category
+        });
     }
 }
 
