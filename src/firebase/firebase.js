@@ -15,9 +15,11 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref('todos').push({
-  category: 'general'
-})
+export { firebase, database as default };
+
+// database.ref('todos').push({
+//   category: 'general'
+// })
 
 // database.ref().on('value', (snapshot) => {
 //   console.log(snapshot.val());
