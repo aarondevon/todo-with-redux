@@ -1,5 +1,6 @@
-import Todo from "../../models/Todo";
-import {loadTodosState} from "../../models/local-storage";
+import Todo from '../../models/Todo';
+import { loadTodosState } from '../../models/local-storage';
+import { ADD_TODO,  COMPLETED, EDIT , SAVE, CANCEL, DELETE, CLEAR_COMPLETED} from '../../actions/todos';
 
 const stateFromLocalStorage = loadTodosState();
 
@@ -7,9 +8,9 @@ const initialState = {todos: stateFromLocalStorage || []};
 
 export const todoReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case 'ADD_TODO':
+        case ADD_TODO:
             return {todos: state.todos.concat(action.todo)};
-        case 'COMPLETED':
+        case COMPLETED:
             return {todos: state.todos.map((todo: Todo) => {
 
                 if (action.id === todo.getId()) {
@@ -18,14 +19,14 @@ export const todoReducer = (state = initialState, action: any) => {
                     console.log(todo);
                 return todo;
                 })} // map through todos, and flip "completed" flag on the one in question
-        case 'EDIT':
+        case EDIT:
             return {todos: state.todos.map((todo: Todo) => {
                 if (action.id === todo.getId()) {
                     todo.setInEdit(true)
                 }
                 return todo
                 })}
-        case 'SAVE':
+        case SAVE:
             return {todos: state.todos.map((todo: Todo) => {
                     if (action.id === todo.getId()) {
                         console.log('saving');
@@ -36,20 +37,20 @@ export const todoReducer = (state = initialState, action: any) => {
                     }
                     return todo
                 })}
-        case 'CANCEL':
+        case CANCEL:
             return {todos: state.todos.map((todo: Todo) => {
                     if (action.id === todo.getId()) {
                         todo.setInEdit(false)
                     }
                     return todo
                 })}
-        case 'DELETE':
+        case DELETE:
             return {todos: state.todos.filter((todo: Todo) => {
                 if (action.id !== todo.getId()) {
                     return todo;
                 }
             })}
-        case 'CLEAR_COMPLETED':
+        case CLEAR_COMPLETED:
             return {todos: state.todos.filter((todo: Todo) => {
                 if (!todo.getCompleted()) {
                     return todo;
