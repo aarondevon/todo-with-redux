@@ -6,7 +6,7 @@ console.log('state from local storage', stateFromLocalStorage);
 
 const initialState = {todos: stateFromLocalStorage};
 
-export const addTodoReducer = (state = initialState, action: any) => {
+export const todoReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case 'ADD_TODO':
             //console.log(state.todos);

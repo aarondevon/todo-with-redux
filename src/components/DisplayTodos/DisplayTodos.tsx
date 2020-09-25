@@ -40,7 +40,7 @@ class DisplayTodos extends React.Component<any, any> {
 }
 
 const mapPropsToState = (state: any) => ({
-    todos: state.addTodos,
+    todos: state.todos,
     category: state.category
 });
 
