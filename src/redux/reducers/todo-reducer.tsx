@@ -5,7 +5,7 @@ const stateFromLocalStorage = loadTodosState();
 
 const initialState = {todos: stateFromLocalStorage || []};
 
-export const addTodoReducer = (state = initialState, action: any) => {
+export const todoReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case 'ADD_TODO':
             return {todos: state.todos.concat(action.todo)};

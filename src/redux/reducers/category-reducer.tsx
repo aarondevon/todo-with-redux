@@ -1,8 +1,10 @@
+import {SORT} from '../../actions/todos';
+
 const initialState = {category: 'all'};
 
 export const categoryReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case 'SORT':
+        case SORT:
             return {category: action.category}
         // case 'GENERAL':
         //     return {category: 'general'}

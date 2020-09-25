@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {doSort} from '../../actions/todos';
 
 class SortButtons extends React.Component<any, any> {
 
@@ -20,10 +21,7 @@ class SortButtons extends React.Component<any, any> {
 }
 
 const mapDispatchToProps = (dispatch:any) => ({
-    sortCategory: (category: string) => dispatch({
-        type: 'SORT',
-        category: category
-    })
+    sortCategory: (category: string) => dispatch(doSort(category))
 });
 
 export default connect(null, mapDispatchToProps)(SortButtons);

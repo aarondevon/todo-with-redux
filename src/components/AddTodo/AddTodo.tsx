@@ -4,15 +4,15 @@ import ToDoCategory from '../ToDoCategory/ToDoCategory';
 import {connect} from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import './AddTodo.scss'
+import database from '../../firebase/firebase';
 
 interface AddTodoProps {
-    addTodo: (todoText: string, toDoCategory: string) => void
+    addTodo: (todoText: string, toDoCategory: string, id: string) => void
 }
 
 interface AddTodoState {
     todoInput: string,
     toDoCategory: string
-
 }
 
 class AddTodo extends React.Component<AddTodoProps, AddTodoState> {
@@ -25,12 +25,30 @@ class AddTodo extends React.Component<AddTodoProps, AddTodoState> {
     toDoCategory: 'general'
   }
 
+  // startAddTodo(state: any) {
+  //       return (dispatch: any) => {
+  //           const { todoInput, toDoCategory} = this.state;
+  //           this.props.addTodo(todoInput.trim(), toDoCategory)
+  //       }
+  // }
   handleAddTodo(event: React.MouseEvent<HTMLButtonElement> ) {
-    this.props.addTodo(this.state.todoInput.trim(), this.state.toDoCategory);
-    this.setState( {
-      todoInput: ''
-    })
       event.preventDefault();
+
+      const { todoInput, toDoCategory } = this.state;
+
+      const todo = {
+          category: toDoCategory,
+          todoText: todoInput.trim(),
+          inEdit: false,
+          completed: false,
+      };
+      console.log('made it here');
+          database.ref('todos').push(todo).then((ref:any) => {
+              this.props.addTodo(todoInput.trim(), toDoCategory, ref.key);
+          });
+      this.setState( {
+        todoInput: ''
+      })
   }
 
   handleInputChange(event: ChangeEvent<HTMLInputElement>) {
@@ -70,9 +88,9 @@ class AddTodo extends React.Component<AddTodoProps, AddTodoState> {
 }
 
 const mapDispatchToProps = (dispatch:any) => ({
-   addTodo: (todoInput: string, toDoCategory: string) => dispatch({
+   addTodo: (todoInput: string, toDoCategory: string, id:string) => dispatch({
        type: 'ADD_TODO',
-       todo: new Todo(todoInput, toDoCategory, false, false, uuidv4())
+       todo: new Todo(todoInput, toDoCategory, false, false, id)
    })
 });
 
