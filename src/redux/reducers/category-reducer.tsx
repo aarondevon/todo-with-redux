@@ -1,4 +1,4 @@
-import {SORT} from '../../actions/todos';
+import {SORT} from '../../actions/category';
 
 const initialState = {category: 'all'};
 

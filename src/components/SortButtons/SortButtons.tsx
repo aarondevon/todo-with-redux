@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {doSort} from '../../actions/todos';
+import {doSort} from '../../actions/category';
 
 class SortButtons extends React.Component<any, any> {
 
