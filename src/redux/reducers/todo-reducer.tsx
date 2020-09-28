@@ -1,6 +1,6 @@
 import Todo from '../../models/Todo';
 import { loadTodosState } from '../../models/local-storage';
-import { ADD_TODO,  COMPLETED, EDIT , SAVE, CANCEL, DELETE, CLEAR_COMPLETED} from '../../actions/todos';
+import { ADD_TODO,  COMPLETED, EDIT , SAVE, CANCEL, REMOVE, CLEAR_COMPLETED} from '../../actions/todos';
 
 const stateFromLocalStorage = loadTodosState();
 
@@ -44,7 +44,8 @@ export const todoReducer = (state = initialState, action: any) => {
                     }
                     return todo
                 })}
-        case DELETE:
+        case REMOVE:
+            console.log(REMOVE);
             return {todos: state.todos.filter((todo: Todo) => {
                 if (action.id !== todo.getId()) {
                     return todo;
