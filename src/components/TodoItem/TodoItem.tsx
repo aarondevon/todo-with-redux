@@ -1,5 +1,6 @@
 import React from 'react';
 import './TodoItem.scss';
+import { COMPLETED, EDIT, doRemoveToDo } from '../../actions/todos';
 import {connect} from "react-redux";
 import Todo from "../../models/Todo";
 
@@ -22,7 +23,6 @@ class TodoItem extends React.Component<TodoItemProps, todoItemState> {
    }
 
   handleCompleteTodo(event:any) {
-
     this.props.setCompleted(this.props.todo.getId());
   }
 
@@ -49,17 +49,18 @@ class TodoItem extends React.Component<TodoItemProps, todoItemState> {
 
 const mapDispatchToProps = (dispatch: any) => ({
     setCompleted: (id: string) => dispatch({
-    type: 'COMPLETED',
+    type: COMPLETED,
     id: id
   }),
     onEdit: (id: string) => dispatch({
-        type: 'EDIT',
+        type: EDIT,
         id: id
     }),
-    onDelete: (id: string) => dispatch({
-        type: 'DELETE',
-        id: id
-    })
+    onDelete: (id: string) => dispatch(doRemoveToDo(id))
+    // onDelete: (id: string) => dispatch({
+    //     type: REMOVE,
+    //     id: id
+    // })
 });
 
 export default connect(null, mapDispatchToProps)(TodoItem);
