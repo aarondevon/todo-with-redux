@@ -6,9 +6,10 @@ export const COMPLETED = 'COMPLETED';
 export const EDIT = 'EDIT';
 export const SAVE = 'SAVE';
 export const CANCEL = 'CANCEL';
-export const DELETE = 'DELETE';
+export const REMOVE = 'REMOVE';
 export const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
 
+// Add todo to the database and local storage
 export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch: any) => {
 
     const todo = {
@@ -19,10 +20,19 @@ export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch:
     };
 
     database.ref('todos').push(todo).then((ref:any) => {
-        // this.props.addTodo(todoInput, toDoCategory, id);
         dispatch({
             type: ADD_TODO,
             todo: new Todo(todoInput, toDoCategory, false, false, ref.key)
+        });
+    });
+}
+
+// Remove todo from the database and local storage
+export const doRemoveToDo = (id: string) => (dispatch: any) => {
+    database.ref(`todos/${id}`).remove().then(() => {
+        dispatch({
+            type: REMOVE,
+            id: id
         });
     });
 }
