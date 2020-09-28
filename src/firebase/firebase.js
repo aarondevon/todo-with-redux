@@ -46,5 +46,15 @@ export { firebase, database as default };
 //       console.log('Error fetching data', error)
 //     });
 
+// Remove data example
+// database.ref('isSingle')
+//   .remove()
+//   .then(() =>
+// {
+//   console.log('Data was removed');
+// }).catch((error) =>
+// {
+//   console.log('Didi not remove data', error);
+// });
 
 
