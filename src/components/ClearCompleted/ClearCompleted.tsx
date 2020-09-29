@@ -16,10 +16,10 @@ class ClearCompleted extends React.Component<any, any> {
     }
 }
 
-const mapDispatchToState = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: any) => ({
   clearCompleted: () => dispatch({
       type: 'CLEAR_COMPLETED'
   })
 })
 
-export default connect(null,mapDispatchToState)(ClearCompleted);
+export default connect(null, mapDispatchToProps)(ClearCompleted);
