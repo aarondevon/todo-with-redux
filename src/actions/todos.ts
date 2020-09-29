@@ -31,9 +31,6 @@ export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch:
 
 // Complete ToDo
 export const doComplete = (id: string, completed: boolean) => (dispatch: Dispatch) => {
-    database.ref(`todos/${id}/complete`).once('value').then(snapshot => {
-
-    })
     database.ref(`todos/${id}`).update({completed: !completed}).then(() => {
         dispatch({
             type: COMPLETED,
@@ -90,9 +87,9 @@ export const loadToDoState = () => {
             const todos: any[] = [];
             if (snapshot.exists()) {
                 snapshot.forEach((childSnapshot) => {
-                    const {todoText, category, inEdit, completed,} = childSnapshot.val();
+                    const {todoText, toDoCategory, inEdit, completed,} = childSnapshot.val();
                     const id: string | null = childSnapshot.key;
-                    todos.push(new Todo(todoText, category, inEdit, completed, id));
+                    todos.push(new Todo(todoText, toDoCategory, inEdit, completed, id));
                 });
             }
             dispatch({
