@@ -44,7 +44,7 @@ const setToDos = (todos: any) => ({
             todos: todos
 });
 
-export const startSetToDos = () => {
+export const loadToDoState = () => {
     return  (dispatch: any) => {
         return  database.ref('todos').once('value').then((snapshot) => {
             const todos: any[] = [];
