@@ -15,7 +15,7 @@ export const SET_TODOS = 'SET_TODOS';
 export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch: Dispatch) => {
 
     const todo = {
-        category: toDoCategory,
+        toDoCategory: toDoCategory,
         todoText: todoInput.trim(),
         inEdit: false,
         completed: false,
