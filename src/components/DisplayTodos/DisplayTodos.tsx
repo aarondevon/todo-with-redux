@@ -20,7 +20,7 @@ class DisplayTodos extends React.Component<any, any> {
 
     getPrintTodos(collection: any) {
 
-        console.log(collection);
+        console.log('collection', collection);
         return collection.map((todo:Todo) => {
             if (todo.getInEdit()) {
                 return <EditTodo key={todo.getId()} todo={todo} isInEdit={todo.getInEdit()}/>
