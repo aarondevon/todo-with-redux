@@ -6,6 +6,7 @@ import './index.css';
 import {todoReducer} from "./redux/reducers/todo-reducer";
 import {categoryReducer} from "./redux/reducers/category-reducer";
 import App from './components/App/App';
+import { startSetToDos } from './actions/todos';
 import {saveTodosState} from './models/local-storage';
 import * as serviceWorker from './serviceWorker';
 import thunk from 'redux-thunk';
@@ -29,14 +30,21 @@ store.subscribe(() => {
     saveTodosState(store.getState().todoReducer.todos);
 });
 
-ReactDOM.render(
-  <React.StrictMode>
-      <Provider store={store}>
-    <App />
-      </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+ReactDOM.render(<p>Loading...</p>, document.getElementById('root'))
+
+// @ts-ignore
+store.dispatch(startSetToDos()).then(() => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+})
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

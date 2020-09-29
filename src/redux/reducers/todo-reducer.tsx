@@ -1,13 +1,16 @@
 import Todo from '../../models/Todo';
-import { loadTodosState } from '../../models/local-storage';
-import { ADD_TODO,  COMPLETED, EDIT , SAVE, CANCEL, REMOVE, CLEAR_COMPLETED} from '../../actions/todos';
+// import { loadTodosState } from '../../models/local-storage';
+import {ADD_TODO, COMPLETED, EDIT, SAVE, CANCEL, REMOVE, CLEAR_COMPLETED, SET_TODOS} from '../../actions/todos';
 
-const stateFromLocalStorage = loadTodosState();
-
-const initialState = {todos: stateFromLocalStorage || []};
+// const stateFromLocalStorage = loadTodosState();
+// const initialState = {todos: stateFromLocalStorage || []};
+const initialState = { todos: [] };
 
 export const todoReducer = (state = initialState, action: any) => {
     switch (action.type) {
+        case SET_TODOS:
+            return {todos: action.todos}
+
         case ADD_TODO:
             return {todos: state.todos.concat(action.todo)};
         case COMPLETED:
@@ -16,7 +19,6 @@ export const todoReducer = (state = initialState, action: any) => {
                 if (action.id === todo.getId()) {
                     todo.setCompleted(!todo.getCompleted());
                 }
-                    console.log(todo);
                 return todo;
                 })} // map through todos, and flip "completed" flag on the one in question
         case EDIT:
@@ -29,8 +31,6 @@ export const todoReducer = (state = initialState, action: any) => {
         case SAVE:
             return {todos: state.todos.map((todo: Todo) => {
                     if (action.id === todo.getId()) {
-                        console.log('saving');
-                        console.log('the category is', action.toDoCategory);
                         todo.setText(action.todoText)
                         todo.setCategory(action.toDoCategory);
                         todo.setInEdit(false);
@@ -45,7 +45,6 @@ export const todoReducer = (state = initialState, action: any) => {
                     return todo
                 })}
         case REMOVE:
-            console.log(REMOVE);
             return {todos: state.todos.filter((todo: Todo) => {
                 if (action.id !== todo.getId()) {
                     return todo;
