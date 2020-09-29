@@ -42,7 +42,7 @@ export const doComplete = (id: string, completed: boolean) => (dispatch: Dispatc
     })
 }
 
-// Edit ToDo
+// inEdit ToDo
 export const doInEdit = (id: string) => (dispatch: Dispatch) => {
     database.ref(`todos/${id}`).update({inEdit: true}).then(() => {
         dispatch({
@@ -52,7 +52,17 @@ export const doInEdit = (id: string) => (dispatch: Dispatch) => {
     });
 };
 
-//
+// Edit ToDo
+export const doEdit = (todoText: string, toDoCategory: string, id: string) => (dispatch: Dispatch) => {
+    database.ref(`todos/${id}`).update({todoText, toDoCategory, inEdit: false}).then(() => {
+        dispatch({
+            type: 'SAVE',
+            todoText: todoText,
+            toDoCategory: toDoCategory,
+            id: id
+        });
+    });
+};
 
 // Remove ToDo from the database and local storage
 export const doRemoveToDo = (id: string) => (dispatch: Dispatch) => {

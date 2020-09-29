@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import './EditTodo.scss';
 import Todo from '../../models/Todo';
 import ToDoCategory from "../ToDoCategory/ToDoCategory";
+import {doEdit} from "../../actions/todos";
 
 interface EditProps {
     todo: Todo,
@@ -69,12 +70,7 @@ class EditTodo extends React.Component<EditProps, EditState> {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-    onSave: (todoText: string, toDoCategory: string, id: string) => dispatch({
-        type: 'SAVE',
-        todoText: todoText,
-        toDoCategory: toDoCategory,
-        id: id
-    }),
+    onSave: (todoText: string, toDoCategory: string, id: string) => dispatch(doEdit(todoText, toDoCategory, id)),
     onCancel: (id: string) => dispatch({
         type: 'CANCEL',
         id: id
