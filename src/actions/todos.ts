@@ -10,7 +10,7 @@ export const REMOVE = 'REMOVE';
 export const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
 export const SET_TODOS = 'SET_TODOS';
 
-// Add todo to the database and local storage
+// Add ToDo to the database and local storage
 export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch: any) => {
 
     const todo = {
@@ -28,7 +28,11 @@ export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch:
     });
 }
 
-// Remove todo from the database and local storage
+// Complete ToDo
+
+// Edit ToDo
+
+// Remove ToDo from the database and local storage
 export const doRemoveToDo = (id: string) => (dispatch: any) => {
     database.ref(`todos/${id}`).remove().then(() => {
         dispatch({
