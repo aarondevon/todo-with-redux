@@ -1,15 +1,15 @@
 import React from 'react';
 import './TodoItem.scss';
-import { COMPLETED, EDIT, doRemoveToDo } from '../../actions/todos';
+import { doInEdit, doComplete, doRemoveToDo } from '../../actions/todos';
 import {connect} from "react-redux";
 import Todo from "../../models/Todo";
 
 interface TodoItemProps {
     todo: Todo,
     isCompleted: boolean
-    setCompleted: (id: string) => any // TODO - type this fully (look at redux types library in node modules for reference),
+    setCompleted: (id: string, completed: boolean) => any // TODO - type this fully (look at redux types library in node modules for reference),
     onEdit: (id: string) => any,
-    onDelete: (id: string) => any
+    onRemove: (id: string) => any
 
 }
 
@@ -23,7 +23,7 @@ class TodoItem extends React.Component<TodoItemProps, todoItemState> {
    }
 
   handleCompleteTodo(event:any) {
-    this.props.setCompleted(this.props.todo.getId());
+    this.props.setCompleted(this.props.todo.getId(), this.props.todo.getCompleted());
   }
 
   render() {
@@ -38,7 +38,7 @@ class TodoItem extends React.Component<TodoItemProps, todoItemState> {
         </p>
           <div className="edit-delete-container">
             <button className="button edit" onClick={() => this.props.onEdit(this.props.todo.getId())}>Edit</button>
-            <button className="button delete" onClick={() => this.props.onDelete(this.props.todo.getId())}>Delete</button>
+            <button className="button delete" onClick={() => this.props.onRemove(this.props.todo.getId())}>Delete</button>
           </div>
 
 
@@ -48,19 +48,9 @@ class TodoItem extends React.Component<TodoItemProps, todoItemState> {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-    setCompleted: (id: string) => dispatch({
-    type: COMPLETED,
-    id: id
-  }),
-    onEdit: (id: string) => dispatch({
-        type: EDIT,
-        id: id
-    }),
-    onDelete: (id: string) => dispatch(doRemoveToDo(id))
-    // onDelete: (id: string) => dispatch({
-    //     type: REMOVE,
-    //     id: id
-    // })
+    setCompleted: (id: string, completed: boolean) => dispatch(doComplete(id, completed)),
+    onEdit: (id: string) => dispatch(doInEdit(id)),
+    onRemove: (id: string) => dispatch(doRemoveToDo(id))
 });
 
 export default connect(null, mapDispatchToProps)(TodoItem);
