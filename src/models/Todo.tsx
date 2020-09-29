@@ -1,21 +1,21 @@
 
 export default class Todo {
-    private text: string;
+    private todoText: string;
     private category: string;
     private inEdit: boolean;
     private completed: boolean;
-    private id: string;
+    private id: string | null;
 
-    constructor(text: string, category: string, inEdit: boolean, completed: boolean, id: string) {
-        this.text = text;
+    constructor(todoText: string, category: string, inEdit: boolean, completed: boolean, id: string | null) {
+        this.todoText = todoText;
         this.category = category;
         this.inEdit = inEdit;
         this.completed = completed;
         this.id = id;
     }
 
-    setText (text: string) {
-        this.text = text;
+    setText (todoText: string) {
+        this.todoText = todoText;
     }
 
     setCategory (category: string) {
@@ -31,7 +31,7 @@ export default class Todo {
     }
 
     getText(): string {
-        return this.text;
+        return this.todoText;
     }
 
     getCategory() {
