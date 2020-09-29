@@ -39,11 +39,6 @@ export const doRemoveToDo = (id: string) => (dispatch: any) => {
 }
 
 // Set data at start of app
-const setToDos = (todos: any) => ({
-        type: SET_TODOS,
-            todos: todos
-});
-
 export const loadToDoState = () => {
     return  (dispatch: any) => {
         return  database.ref('todos').once('value').then((snapshot) => {
@@ -55,7 +50,10 @@ export const loadToDoState = () => {
                     todos.push(new Todo(todoText, category, inEdit, completed, id));
                 });
             }
-            dispatch(setToDos(todos));
+            dispatch({
+                type: SET_TODOS,
+                todos: todos
+            });
         });
     };
 };
