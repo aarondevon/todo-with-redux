@@ -2,14 +2,14 @@ import database from "../firebase/firebase";
 import Todo from "../models/Todo";
 import {Dispatch} from "redux";
 
-export const ADD_TODO = 'ADD_TODO';
-export const COMPLETED = 'COMPLETED';
-export const EDIT = 'EDIT';
-export const SAVE = 'SAVE';
-export const CANCEL = 'CANCEL';
-export const REMOVE = 'REMOVE';
-export const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
-export const SET_TODOS = 'SET_TODOS';
+export const ADD_TODO: string = 'ADD_TODO';
+export const COMPLETED: string = 'COMPLETED';
+export const EDIT: string = 'EDIT';
+export const SAVE: string = 'SAVE';
+export const CANCEL: string = 'CANCEL';
+export const REMOVE: string = 'REMOVE';
+export const CLEAR_COMPLETED: string = 'CLEAR_COMPLETED';
+export const SET_TODOS: string = 'SET_TODOS';
 
 // Add ToDo to the database and local storage
 export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch: Dispatch) => {
