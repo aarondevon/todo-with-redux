@@ -2,10 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from 'react-router-dom';
+import {firebase} from "./firebase/firebase";
 import './index.css';
 import {todoReducer} from "./redux/reducers/todo-reducer";
 import {categoryReducer} from "./redux/reducers/category-reducer";
 import App from './components/App/App';
+import LoginPage from "./components/LoginPage/LoginPage";
 import { loadToDoState } from './actions/todos';
 import {saveTodosState} from './models/local-storage';
 import * as serviceWorker from './serviceWorker';
@@ -37,13 +44,29 @@ store.dispatch(loadToDoState()).then(() => {
     ReactDOM.render(
         <React.StrictMode>
             <Provider store={store}>
-                <App />
+                <Router>
+                    <Switch>
+                        <Route path="/todos">
+                            <App />
+                        </Route>
+                        <Route path="/">
+                            <LoginPage />
+                        </Route>
+                    </Switch>
+                </Router>
             </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );
 })
 
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        console.log('log in');
+    } else {
+        console.log('log out');
+    }
+})
 
 
 // If you want your app to work offline and load faster, you can change

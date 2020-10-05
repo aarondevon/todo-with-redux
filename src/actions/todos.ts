@@ -1,6 +1,7 @@
 import database from "../firebase/firebase";
 import Todo from "../models/Todo";
 import {Dispatch} from "redux";
+import Todos from '../models/Todo';
 
 export const ADD_TODO: string = 'ADD_TODO';
 export const COMPLETED: string = 'COMPLETED';
@@ -78,6 +79,19 @@ export const doRemoveToDo = (id: string) => (dispatch: Dispatch) => {
             id: id
         });
     });
+}
+
+// Clear completed
+export const doClearCompleted = (completedToDos: any) => async (dispatch: Dispatch) => {
+    if (completedToDos.length < 1) {
+        return;
+    }
+      for (let i = 0; i < completedToDos.length; i++) {
+          await database.ref(`todos/${completedToDos[i].getId()}`).remove()
+    }
+        dispatch({
+            type: 'CLEAR_COMPLETED'
+        });
 }
 
 // Set data at start of app
