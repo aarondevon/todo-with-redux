@@ -1,10 +1,15 @@
 import React from 'react';
 import {connect} from "react-redux";
+import {doClearCompleted} from "../../actions/todos";
+import Todo from '../../models/Todo';
 
 class ClearCompleted extends React.Component<any, any> {
 
     onClearCompleted() {
-        this.props.clearCompleted();
+        const completedToDos = this.props.todoReducer.todos.filter((todo: Todo) => todo.getCompleted());
+
+        console.log('Done', completedToDos);
+        this.props.clearCompleted(completedToDos);
     }
 
     render() {
@@ -16,10 +21,12 @@ class ClearCompleted extends React.Component<any, any> {
     }
 }
 
+const mapPropsToState = (state: any) => ({
+    todoReducer: state.todoReducer,
+});
+
 const mapDispatchToProps = (dispatch: any) => ({
-  clearCompleted: () => dispatch({
-      type: 'CLEAR_COMPLETED'
-  })
+  clearCompleted: (completedToDos: any) => dispatch(doClearCompleted(completedToDos))
 })
 
-export default connect(null, mapDispatchToProps)(ClearCompleted);
+export default connect(mapPropsToState, mapDispatchToProps)(ClearCompleted);
