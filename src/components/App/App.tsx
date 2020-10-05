@@ -1,16 +1,20 @@
 import React from 'react';
-import AddTodo from '../AddTodo/AddTodo';
-import DisplayTodos from '../DisplayTodos/DisplayTodos'
 import '../../styles/styles.scss'
 import './App.scss';
+import AddTodo from "../AddTodo/AddTodo";
 import SortButtons from "../SortButtons/SortButtons";
+import DisplayTodos from "../DisplayTodos/DisplayTodos";
 import ClearCompleted from "../ClearCompleted/ClearCompleted";
+import {startLogout} from "../../actions/auth";
+import {connect} from "react-redux";
+
 
 class App extends React.Component<any, any> {
 
     render() {
         return (
             <div id="app">
+                <button onClick={this.props.startLogout}>Logout</button>
                 <h1>todos</h1>
                 <div className="todo-form">
                     <AddTodo />
@@ -23,4 +27,9 @@ class App extends React.Component<any, any> {
     }
 }
 
-export default App;
+
+const mapDispatchToProps = (dispatch: any) => ({
+    startLogout: () => dispatch(startLogout())
+});
+
+export default connect(null, mapDispatchToProps)(App);

@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from "redux";
 import { startLogin } from '../../actions/auth';
-
 
 class LoginPage extends React.Component<any, any> {
     render() {

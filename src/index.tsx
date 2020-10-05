@@ -2,21 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from 'react-router-dom';
-import {firebase} from "./firebase/firebase";
 import './index.css';
 import {todoReducer} from "./redux/reducers/todo-reducer";
 import {categoryReducer} from "./redux/reducers/category-reducer";
-import App from './components/App/App';
-import LoginPage from "./components/LoginPage/LoginPage";
 import { loadToDoState } from './actions/todos';
 import {saveTodosState} from './models/local-storage';
 import * as serviceWorker from './serviceWorker';
 import thunk from 'redux-thunk';
+import { firebase } from "./firebase/firebase";
+import AppRouter, { history } from "./routers/AppRouter";
 
 declare global {
     interface Window {
@@ -37,34 +31,40 @@ store.subscribe(() => {
     saveTodosState(store.getState().todoReducer.todos);
 });
 
+let hasRendered = false;
+const renderApp = () => {
+  if (!hasRendered) {
+      ReactDOM.render(jsx, document.getElementById('root'));
+      hasRendered = true
+  }
+};
+
+const jsx = (
+    <React.StrictMode>
+        <Provider store={store}>
+            <AppRouter />
+        </Provider>
+    </React.StrictMode>
+)
+
 ReactDOM.render(<p>Loading...</p>, document.getElementById('root'))
 
-// @ts-ignore
-store.dispatch(loadToDoState()).then(() => {
-    ReactDOM.render(
-        <React.StrictMode>
-            <Provider store={store}>
-                <Router>
-                    <Switch>
-                        <Route path="/todos">
-                            <App />
-                        </Route>
-                        <Route path="/">
-                            <LoginPage />
-                        </Route>
-                    </Switch>
-                </Router>
-            </Provider>
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-})
+
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        console.log('log in');
+        console.log('logged in', user.uid);
+        // @ts-ignore
+        store.dispatch(loadToDoState()).then(() => {
+            renderApp();
+            if (history.location.pathname === '/') {
+                history.push('/todos');
+            }
+        })
     } else {
         console.log('log out');
+        renderApp();
+        history.push('/');
     }
 })
 
