@@ -2,15 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import thunk from 'redux-thunk';
+import * as serviceWorker from './serviceWorker';
 import './index.css';
 import {todoReducer} from "./redux/reducers/todo-reducer";
 import {categoryReducer} from "./redux/reducers/category-reducer";
+import { authReducer} from "./redux/reducers/auth-reducer";
 import { loadToDoState } from './actions/todos';
 import {saveTodosState} from './models/local-storage';
-import * as serviceWorker from './serviceWorker';
-import thunk from 'redux-thunk';
 import { firebase } from "./firebase/firebase";
 import AppRouter, { history } from "./routers/AppRouter";
+import { login, logout} from "./actions/auth";
 
 declare global {
     interface Window {
@@ -23,7 +25,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     combineReducers({
         todoReducer,
-        categoryReducer
+        categoryReducer,
+        authReducer
     }), composeEnhancers(applyMiddleware(thunk)));
 
 
@@ -53,6 +56,7 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('root'))
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+        store.dispatch(login(user.uid));
         console.log('logged in', user.uid);
         // @ts-ignore
         store.dispatch(loadToDoState()).then(() => {
@@ -62,6 +66,7 @@ firebase.auth().onAuthStateChanged((user) => {
             }
         })
     } else {
+        store.dispatch(logout());
         console.log('log out');
         renderApp();
         history.push('/');

@@ -7,15 +7,16 @@ import {
 import { createBrowserHistory } from 'history';
 import App from "../components/App/App";
 import LoginPage from "../components/LoginPage/LoginPage";
+import PrivateRoute from './PrivateRoute';
 
 export const history = createBrowserHistory();
 
 const AppRouter = () => (
   <Router history={history}>
     <Switch>
-      <Route path="/todos">
+      <PrivateRoute path="/todos">
         <App />
-      </Route>
+      </PrivateRoute>
       <Route path="/">
         <LoginPage />
       </Route>
