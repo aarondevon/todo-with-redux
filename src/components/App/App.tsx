@@ -8,7 +8,6 @@ import ClearCompleted from "../ClearCompleted/ClearCompleted";
 import {startLogout} from "../../actions/auth";
 import {connect} from "react-redux";
 
-
 class App extends React.Component<any, any> {
 
     render() {

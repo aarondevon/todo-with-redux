@@ -12,16 +12,17 @@ export const CLEAR_COMPLETED: string = 'CLEAR_COMPLETED';
 export const SET_TODOS: string = 'SET_TODOS';
 
 // Add ToDo to the database and local storage
-export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch: Dispatch) => {
-
-    const todo = {
+export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch: Dispatch, getState: any) => {
+    console.log(getState());
+    const uid: string = getState().authReducer.uid;
+    const todo: object = {
         toDoCategory: toDoCategory,
         todoText: todoInput.trim(),
         inEdit: false,
         completed: false,
     };
 
-    database.ref('todos').push(todo).then((ref:any) => {
+    database.ref(`users/${uid}/todos`).push(todo).then((ref:any) => {
         dispatch({
             type: ADD_TODO,
             todo: new Todo(todoInput, toDoCategory, false, false, ref.key)
@@ -30,8 +31,9 @@ export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch:
 }
 
 // Complete ToDo
-export const doComplete = (id: string, completed: boolean) => (dispatch: Dispatch) => {
-    database.ref(`todos/${id}`).update({completed: !completed}).then(() => {
+export const doComplete = (id: string, completed: boolean) => (dispatch: Dispatch, getState: any) => {
+    const uid: string = getState().authReducer.uid;
+    database.ref(`users/${uid}/todos/${id}`).update({completed: !completed}).then(() => {
         dispatch({
             type: COMPLETED,
             id: id
@@ -40,8 +42,9 @@ export const doComplete = (id: string, completed: boolean) => (dispatch: Dispatc
 }
 
 // inEdit ToDo
-export const doInEdit = (id: string) => (dispatch: Dispatch) => {
-    database.ref(`todos/${id}`).update({inEdit: true}).then(() => {
+export const doInEdit = (id: string) => (dispatch: Dispatch, getState: any) => {
+    const uid: string = getState().authReducer.uid;
+    database.ref(`users/${uid}/todos/${id}`).update({inEdit: true}).then(() => {
         dispatch({
             type: EDIT,
             id: id
@@ -50,8 +53,9 @@ export const doInEdit = (id: string) => (dispatch: Dispatch) => {
 };
 
 // Edit ToDo
-export const doEdit = (todoText: string, toDoCategory: string, id: string) => (dispatch: Dispatch) => {
-    database.ref(`todos/${id}`).update({todoText, toDoCategory, inEdit: false}).then(() => {
+export const doEdit = (todoText: string, toDoCategory: string, id: string) => (dispatch: Dispatch, getState: any) => {
+    const uid: string = getState().authReducer.uid;
+    database.ref(`users/${uid}/todos/${id}`).update({todoText, toDoCategory, inEdit: false}).then(() => {
         dispatch({
             type: SAVE,
             todoText: todoText,
@@ -61,8 +65,9 @@ export const doEdit = (todoText: string, toDoCategory: string, id: string) => (d
     });
 };
 
-export const doCancel = (id: string) => (dispatch: Dispatch) => {
-    database.ref(`todos/${id}`).update({inEdit: false}).then(() => {
+export const doCancel = (id: string) => (dispatch: Dispatch, getState: any) => {
+    const uid: string = getState().authReducer.uid;
+    database.ref(`users/${uid}todos/${id}`).update({inEdit: false}).then(() => {
         dispatch({
             type: CANCEL,
             id: id
@@ -71,8 +76,9 @@ export const doCancel = (id: string) => (dispatch: Dispatch) => {
 }
 
 // Remove ToDo from the database and local storage
-export const doRemoveToDo = (id: string) => (dispatch: Dispatch) => {
-    database.ref(`todos/${id}`).remove().then(() => {
+export const doRemoveToDo = (id: string) => (dispatch: Dispatch, getState: any) => {
+    const uid: string = getState().authReducer.uid;
+    database.ref(`users/${uid}/todos/${id}`).remove().then(() => {
         dispatch({
             type: REMOVE,
             id: id
@@ -81,12 +87,13 @@ export const doRemoveToDo = (id: string) => (dispatch: Dispatch) => {
 }
 
 // Clear completed
-export const doClearCompleted = (completedToDos: any) => async (dispatch: Dispatch) => {
+export const doClearCompleted = (completedToDos: any) => async (dispatch: Dispatch, getState: any) => {
+    const uid: string = getState().authReducer.uid;
     if (completedToDos.length < 1) {
         return;
     }
       for (let i = 0; i < completedToDos.length; i++) {
-          await database.ref(`todos/${completedToDos[i].getId()}`).remove()
+          await database.ref(`users/${uid}/todos/${completedToDos[i].getId()}`).remove()
     }
         dispatch({
             type: 'CLEAR_COMPLETED'
@@ -95,8 +102,9 @@ export const doClearCompleted = (completedToDos: any) => async (dispatch: Dispat
 
 // Set data at start of app
 export const loadToDoState = () => {
-    return  (dispatch: Dispatch) => {
-        return  database.ref('todos').once('value').then((snapshot) => {
+    return  (dispatch: Dispatch, getState: any) => {
+        const uid: string = getState().authReducer.uid;
+        return  database.ref(`users/${uid}/todos`).once('value').then((snapshot) => {
             const todos: any[] = [];
             if (snapshot.exists()) {
                 snapshot.forEach((childSnapshot) => {
