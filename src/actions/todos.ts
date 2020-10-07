@@ -1,6 +1,6 @@
 import database from "../firebase/firebase";
 import Todo from "../models/Todo";
-import {Dispatch} from "redux";
+import { Dispatch } from "redux";
 
 export const ADD_TODO: string = 'ADD_TODO';
 export const COMPLETED: string = 'COMPLETED';
@@ -13,7 +13,7 @@ export const SET_TODOS: string = 'SET_TODOS';
 
 // Add ToDo to the database and local storage
 export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch: Dispatch, getState: any) => {
-    console.log(getState());
+
     const uid: string = getState().authReducer.uid;
     const todo: object = {
         toDoCategory: toDoCategory,
