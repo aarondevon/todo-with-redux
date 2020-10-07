@@ -9,7 +9,6 @@ import {todoReducer} from "./redux/reducers/todo-reducer";
 import {categoryReducer} from "./redux/reducers/category-reducer";
 import { authReducer} from "./redux/reducers/auth-reducer";
 import { loadToDoState } from './actions/todos';
-import {saveTodosState} from './models/local-storage';
 import { firebase } from "./firebase/firebase";
 import AppRouter, { history } from "./routers/AppRouter";
 import { login, logout} from "./actions/auth";
@@ -28,11 +27,6 @@ const store = createStore(
         categoryReducer,
         authReducer
     }), composeEnhancers(applyMiddleware(thunk)));
-
-
-store.subscribe(() => {
-    saveTodosState(store.getState().todoReducer.todos);
-});
 
 let hasRendered = false;
 const renderApp = () => {
