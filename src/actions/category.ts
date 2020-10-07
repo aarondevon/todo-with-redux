@@ -1,10 +1,5 @@
 export const SORT = 'SORT';
 
-// export const doSort = (category: string) => ({
-//     type: SORT,
-//     category: category
-// });
-
 export function doSort(category: string) {
     return function inner(dispatch: any) {
         dispatch({
