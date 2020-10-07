@@ -1,8 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import ToDoCategory from '../ToDoCategory/ToDoCategory';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import './AddTodo.scss'
-import { doAddToDo} from "../../actions/todos";
+import { doAddToDo } from "../../actions/todos";
 
 interface AddTodoProps {
     addTodo: (todoText: string, toDoCategory: string) => void
