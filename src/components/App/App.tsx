@@ -5,8 +5,8 @@ import AddTodo from "../AddTodo/AddTodo";
 import SortButtons from "../SortButtons/SortButtons";
 import DisplayTodos from "../DisplayTodos/DisplayTodos";
 import ClearCompleted from "../ClearCompleted/ClearCompleted";
-import {startLogout} from "../../actions/auth";
-import {connect} from "react-redux";
+import { startLogout } from "../../actions/auth";
+import { connect } from "react-redux";
 
 class App extends React.Component<any, any> {
 

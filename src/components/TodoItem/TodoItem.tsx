@@ -1,7 +1,7 @@
 import React from 'react';
 import './TodoItem.scss';
 import { doInEdit, doComplete, doRemoveToDo } from '../../actions/todos';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import Todo from "../../models/Todo";
 
 interface TodoItemProps {

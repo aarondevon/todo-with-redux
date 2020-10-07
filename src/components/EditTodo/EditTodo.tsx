@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import './EditTodo.scss';
 import Todo from '../../models/Todo';
 import ToDoCategory from "../ToDoCategory/ToDoCategory";
-import {doCancel, doEdit} from "../../actions/todos";
+import { doCancel, doEdit } from "../../actions/todos";
 
 interface EditProps {
     todo: Todo,
@@ -27,7 +27,6 @@ class EditTodo extends React.Component<EditProps, EditState> {
   // set event to proper type
   handleOnChange(event: any) {
 
-    console.log(event);
     this.setState( {
       todoText: event.target.value
     })
@@ -36,7 +35,6 @@ class EditTodo extends React.Component<EditProps, EditState> {
   handleCategoryChange(category: string) {
 
       if (this.state.toDoCategory !== category) {
-          console.log(this.state.toDoCategory);
           this.setState({
               toDoCategory: category
           })
@@ -44,7 +42,6 @@ class EditTodo extends React.Component<EditProps, EditState> {
   }
 
   handleSaveTodo() {
-      console.log(this.state.toDoCategory);
     this.props.onSave(this.state.todoText, this.state.toDoCategory, this.props.todo.getId());
   }
 
