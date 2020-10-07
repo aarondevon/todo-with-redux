@@ -67,7 +67,7 @@ export const doEdit = (todoText: string, toDoCategory: string, id: string) => (d
 
 export const doCancel = (id: string) => (dispatch: Dispatch, getState: any) => {
     const uid: string = getState().authReducer.uid;
-    database.ref(`users/${uid}todos/${id}`).update({inEdit: false}).then(() => {
+    database.ref(`users/${uid}/todos/${id}`).update({inEdit: false}).then(() => {
         dispatch({
             type: CANCEL,
             id: id
