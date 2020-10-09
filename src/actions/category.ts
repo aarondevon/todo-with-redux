@@ -1,6 +1,8 @@
+import Categories from "../models/categories";
+
 export const SORT = 'SORT';
 
-export function doSort(category: string) {
+export function doSort(category: Categories) {
     return function inner(dispatch: any) {
         dispatch({
             type: SORT,

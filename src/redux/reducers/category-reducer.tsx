@@ -1,17 +1,21 @@
 import {SORT} from '../../actions/category';
+import Categories from '../../models/categories';
+import {Action} from "redux";
 
-const initialState = {category: 'all'};
+interface State {
+    category: Categories
+}
 
-export const categoryReducer = (state = initialState, action: any) => {
+interface ChangeSortAction extends Action<String> {
+    category: Categories
+}
+
+const initialState: State = {category: Categories.ALL};
+
+export const categoryReducer = (state = initialState, action: ChangeSortAction): State => {
     switch (action.type) {
         case SORT:
             return {category: action.category}
-        // case 'GENERAL':
-        //     return {category: 'general'}
-        // case 'GROCERY':
-        //     return {category: 'grocery'}
-        // case 'WORK':
-        //     return {category: 'work'}
         default:
             return state;
     }
