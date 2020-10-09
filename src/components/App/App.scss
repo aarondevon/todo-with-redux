@@ -1,9 +1,13 @@
+@import "../../styles/common/colors";
+@import "../../styles/common/mixins";
+
 #app {
   padding: 5px;
 }
+
 .todo-form {
-  background: #fff;
-  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.3);
+  background: $white;
+  @include my-box-shadow;
   padding: 5px;
 }
 

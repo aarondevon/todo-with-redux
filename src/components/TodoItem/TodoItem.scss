@@ -1,9 +1,9 @@
-
+@import "../../styles/common/mixins";
 
 #todo-item {
   //align-items: center;
   background: #fbf7f5;
-  box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.5);
+  @include my-box-shadow;
   display: flex;
   flex-direction: column;
 
