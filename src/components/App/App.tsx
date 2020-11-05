@@ -13,7 +13,7 @@ class App extends React.Component<any, any> {
     render() {
         return (
             <div id="app">
-                <button onClick={this.props.startLogout}>Logout</button>
+                <button className="logout" onClick={this.props.startLogout}>Logout</button>
                 <h1>todos</h1>
                 <div className="todo-form">
                     <AddTodo />
