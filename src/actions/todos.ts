@@ -1,6 +1,6 @@
 import database from "../firebase/firebase";
 import Todo from "../models/Todo";
-import { Dispatch } from "redux";
+import {Dispatch} from "redux";
 import axios from 'axios';
 
 export const ADD_TODO: string = 'ADD_TODO';
@@ -22,7 +22,6 @@ export const doAddToDo = (todoInput: string, toDoCategory: string) => (dispatch:
         inEdit: false,
         completed: false,
     };
-
     database.ref(`users/${uid}/todos`).push(todo).then((ref:any) => {
         dispatch({
             type: ADD_TODO,
@@ -105,19 +104,35 @@ export const doClearCompleted = (completedToDos: any) => async (dispatch: Dispat
 export const loadToDoState = () => {
     return  (dispatch: Dispatch, getState: any) => {
         const uid: string = getState().authReducer.uid;
-        return  database.ref(`users/${uid}/todos`).once('value').then((snapshot) => {
+
+        return  axios.get(`https://todo-29278.firebaseio.com/users/${uid}/todos.json?auth=7DIqbGEXmmY9b33uGycZnALs0PkebldcHYpOXfdx`).then((response) => {
             const todos: any[] = [];
-            if (snapshot.exists()) {
-                snapshot.forEach((childSnapshot) => {
-                    const {todoText, toDoCategory, inEdit, completed,} = childSnapshot.val();
-                    const id: string | null = childSnapshot.key;
-                    todos.push(new Todo(todoText, toDoCategory, inEdit, completed, id));
-                });
-            }
+            const todoObject = response.data;
+                console.log('I am the data:', todoObject);
+                for (let todo: Object in todoObject ) {
+                    console.log('I am a todo:', todo.completed);
+                    // const {todoText, toDoCategory, inEdit, completed,} = todo;
+                    // const id: string | null = childSnapshot.key;
+                    // todos.push(new Todo(todoText, toDoCategory, inEdit, completed, id));
+                };
             dispatch({
                 type: SET_TODOS,
                 todos: todos
             });
         });
+        // return  database.ref(`users/${uid}/todos`).once('value').then((snapshot) => {
+        //     const todos: any[] = [];
+        //     if (snapshot.exists()) {
+        //         snapshot.forEach((childSnapshot) => {
+        //             const {todoText, toDoCategory, inEdit, completed,} = childSnapshot.val();
+        //             const id: string | null = childSnapshot.key;
+        //             todos.push(new Todo(todoText, toDoCategory, inEdit, completed, id));
+        //         });
+        //     }
+        //     dispatch({
+        //         type: SET_TODOS,
+        //         todos: todos
+        //     });
+        // });
     };
 };
