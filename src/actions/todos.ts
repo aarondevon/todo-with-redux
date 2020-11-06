@@ -108,12 +108,13 @@ export const loadToDoState = () => {
         return  axios.get(`https://todo-29278.firebaseio.com/users/${uid}/todos.json?auth=7DIqbGEXmmY9b33uGycZnALs0PkebldcHYpOXfdx`).then((response) => {
             const todos: any[] = [];
             const todoObject = response.data;
+            const testObject = {test1: {foo: 'bar'},test2: {foo: 'bar'},test3: {foo: 'bar'}}
                 console.log('I am the data:', todoObject);
-                for (let todo: Object in todoObject ) {
-                    console.log('I am a todo:', todo.completed);
-                    // const {todoText, toDoCategory, inEdit, completed,} = todo;
-                    // const id: string | null = childSnapshot.key;
-                    // todos.push(new Todo(todoText, toDoCategory, inEdit, completed, id));
+                for (let todo in todoObject ) {
+                    console.log('I am a todo:', todoObject[todo]);
+                    const {todoText, toDoCategory, inEdit, completed,} = todoObject[todo];
+                    const id: string | null = todo;
+                    todos.push(new Todo(todoText, toDoCategory, inEdit, completed, id));
                 };
             dispatch({
                 type: SET_TODOS,
