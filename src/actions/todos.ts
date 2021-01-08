@@ -109,7 +109,6 @@ export const loadToDoState = () => {
         return  axios.get(`https://todo-29278.firebaseio.com/users/${uid}/todos.json?auth=7DIqbGEXmmY9b33uGycZnALs0PkebldcHYpOXfdx`).then((response) => {
             const todos: any[] = [];
             const todoObject = response.data;
-            const testObject = {test1: {foo: 'bar'},test2: {foo: 'bar'},test3: {foo: 'bar'}}
                 console.log('I am the data:', todoObject);
                 for (let todo in todoObject ) {
                     console.log('I am a todo:', todoObject[todo]);
@@ -138,3 +137,24 @@ export const loadToDoState = () => {
         // });
     };
 };
+
+function foo() {
+    const someOuterVar = 'blah';
+    return function inner() {
+        console.log(someOuterVar);
+    }
+}
+
+class Closure {
+    Function functionReference;
+    List<NormalVariableBinding> normalVariableBindings;
+    List<InnerClosure> innerClosures;
+}
+
+function one() {
+
+}
+
+function two() {
+
+}
