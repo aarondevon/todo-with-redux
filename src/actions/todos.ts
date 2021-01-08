@@ -106,7 +106,7 @@ export const loadToDoState = () => {
     return  (dispatch: Dispatch, getState: any) => {
         const uid: string = getState().authReducer.uid;
 
-        return  axios.get(`https://todo-29278.firebaseio.com/users/${uid}/todos.json?auth=7DIqbGEXmmY9b33uGycZnALs0PkebldcHYpOXfdx`).then((response) => {
+        return  axios.get(`https://todo-29278.firebaseio.com/users/${uid}/todos.json?auth=7DIqbGEXmmY9b33uGycZnALs0PkebldcHYpOXfdx`).then((response: any) => {
             const todos: any[] = [];
             const todoObject = response.data;
                 console.log('I am the data:', todoObject);
@@ -145,16 +145,16 @@ function foo() {
     }
 }
 
-class Closure {
-    Function functionReference;
-    List<NormalVariableBinding> normalVariableBindings;
-    List<InnerClosure> innerClosures;
-}
+// class Closure {
+//     Function functionReference;
+//     List<NormalVariableBinding> normalVariableBindings;
+//     List<InnerClosure> innerClosures;
+// }
 
-function one() {
+// function one() {
 
-}
+// }
 
-function two() {
+// function two() {
 
-}
+// }
