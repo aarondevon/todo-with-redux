@@ -18,9 +18,12 @@ class LoginPage extends React.Component<any, any> {
                     <Button className="btn-lg login-buttons" variant="primary" onClick={this.props.   startLogin}>
                         Login
                     </Button>
-                    <Button className="btn-lg login-buttons" variant="primary" onClick={this.props.startLogin}>
+                    <a href="http://demosimpletodo.aarondevon.com/">
+                    <Button className="btn-lg login-buttons" variant="primary">
                         Demo
                     </Button>
+                    </a>
+                    
                     </div>
                     
                 </div>
