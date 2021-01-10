@@ -8,7 +8,6 @@ import ClearCompleted from "../ClearCompleted/ClearCompleted";
 
 
 class App extends React.Component<any, any> {
-
     render() {
         return (
             <div id="app">
