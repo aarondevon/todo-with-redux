@@ -14,7 +14,7 @@ class ClearCompleted extends React.Component<any, any> {
     render() {
         return (
             <div>
-                <button className="button" onClick={() => this.onClearCompleted()}>Clear Completed</button>
+                <button className="button clear-completed" onClick={() => this.onClearCompleted()}>Clear Completed</button>
             </div>
         )
     }
