@@ -1,9 +1,9 @@
-@import "../../styles/common/mixins";
+@import '../../styles/common/mixins';
 
 #todo-item {
   //align-items: center;
   background: #fbf7f5;
-  @include my-box-shadow;
+  // @include my-box-shadow;
   display: flex;
   flex-direction: column;
 
@@ -32,4 +32,3 @@ input#checkbox {
   display: flex;
   justify-content: flex-end;
 }
-
