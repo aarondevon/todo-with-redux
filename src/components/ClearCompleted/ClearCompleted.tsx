@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { doClearCompleted } from "../../actions/todos";
 import Todo from '../../models/Todo';
+import './ClearCompleted.scss';
 
 class ClearCompleted extends React.Component<any, any> {
 
