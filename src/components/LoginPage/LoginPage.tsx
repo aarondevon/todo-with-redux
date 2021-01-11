@@ -15,11 +15,11 @@ class LoginPage extends React.Component<any, any> {
                     <h1>A Simple To-do List</h1>
                     <br></br>
                     <div className="d-flex justify-content-around">
-                    <Button className="btn-lg login-buttons" variant="primary" onClick={this.props.   startLogin}>
+                    <Button className="btn btn-lg login-buttons" variant="primary" onClick={this.props.   startLogin}>
                         Login
                     </Button>
                     <a href="http://demosimpletodo.aarondevon.com/">
-                    <Button className="btn-lg login-buttons" variant="primary">
+                    <Button className="btn btn-lg login-buttons" variant="primary">
                         Demo
                     </Button>
                     </a>
