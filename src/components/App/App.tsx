@@ -15,7 +15,7 @@ class App extends React.Component<any, any> {
         return (
             <div id="app">
                 <div className="text-right">
-                <Button className="logout btn btn-lg " onClick={this.props.startLogout}>Logout</Button>
+                <Button className="logout btn btn-primary btn-lg" onClick={this.props.startLogout}>Logout</Button>
                 </div>
                 
                 <h1>todos</h1>
