@@ -1,5 +1,5 @@
-@import "../../styles/common/colors";
-@import "../../styles/common/mixins";
+@import '../../styles/common/colors';
+@import '../../styles/common/mixins';
 
 #app {
   padding: 5px;
@@ -22,4 +22,19 @@ h1 {
 .sort-buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.logout.btn-primary {
+  background-color: #96b1ae;
+  border: #96b1ae;
+}
+
+.logout.btn-primary.active.focus,
+.logout.btn-primary.active:focus,
+.logout.btn-primary.active:hover,
+.logout.btn-primary:active.focus,
+.logout.btn-primary:active:focus,
+.logout.btn-primary:active:hover {
+  background-color: #96b1ae;
+  border: #96b1ae;
 }
