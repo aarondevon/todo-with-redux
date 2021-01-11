@@ -3,6 +3,7 @@
 #todo-item {
   //align-items: center;
   background: #fbf7f5;
+  border-bottom: 1px solid #404756;
   // @include my-box-shadow;
   display: flex;
   flex-direction: column;
@@ -10,6 +11,11 @@
   justify-content: space-around;
   margin-bottom: 10px;
   //border-bottom: 1px solid #000;
+}
+
+#todo-input {
+  background-color: #fff;
+  border: 1px solid #404756;
 }
 
 #todo-text {
