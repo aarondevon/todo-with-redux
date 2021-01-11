@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
+import { Button } from 'react-bootstrap';
 import '../../styles/styles.scss'
 import './App.scss';
 import AddTodo from "../AddTodo/AddTodo";
@@ -14,7 +14,10 @@ class App extends React.Component<any, any> {
     render() {
         return (
             <div id="app">
-                <button className="logout" onClick={this.props.startLogout}>Logout</button>
+                <div className="text-right">
+                <Button className="logout btn btn-lg " onClick={this.props.startLogout}>Logout</Button>
+                </div>
+                
                 <h1>todos</h1>
                 <div className="todo-form">
                     <AddTodo />
