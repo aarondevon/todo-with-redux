@@ -1,6 +1,7 @@
 #todo-item {
   //align-items: center;
   background: #fbf7f5;
+  border-bottom: 1px solid #404756;
   display: flex;
   flex-direction: column;
 
@@ -9,6 +10,10 @@
   //border-bottom: 1px solid #000;
 }
 
+#todo-input {
+  background-color: #fff;
+  border: 1px solid #404756;
+}
 #todo-text {
   color: #f2522e;
   flex-grow: 2;
