@@ -19,12 +19,12 @@
 }
 
 #todo-text {
-  color: #f2522e;
+  color: #000;
   flex-grow: 2;
   font-size: 1.5rem;
   margin-bottom: 0;
   &.completed {
-    color: #1d857f;
+    color: #c4c0be;
     text-decoration: line-through;
   }
 }
