@@ -15,19 +15,23 @@
   border: 1px solid #404756;
 }
 #todo-text {
-  color: #f2522e;
+  color: #000;
   flex-grow: 2;
   font-size: 1.5rem;
   margin-bottom: 0;
   &.completed {
-    color: #1d857f;
+    color: #c4c0be;
     text-decoration: line-through;
   }
 }
 
+.todo-text {
+  padding-left: 0.5rem;
+}
+
 input#checkbox {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
 }
 
 .edit-delete-container {

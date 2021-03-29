@@ -34,7 +34,7 @@ class TodoItem extends React.Component<TodoItemProps, todoItemState> {
 
           <input type="checkbox" id={`${this.props.todo.getCompleted()}`} checked={this.props.isCompleted}
                  onChange={(event) => this.handleCompleteTodo(event)}/>
-          {this.props.todo.getText()}
+          <span className="todo-text">{this.props.todo.getText()}</span>
         </p>
           <div className="edit-delete-container">
             <button className="button edit" onClick={() => this.props.onEdit(this.props.todo.getId())}>Edit</button>
