@@ -5,3 +5,18 @@
 .login-buttons {
   margin: 20px;
 }
+
+.login-buttons.btn-primary {
+  background-color: #3c3938;
+  border: #3c3938;
+}
+
+.login-buttons.btn-primary.active.focus,
+.login-buttons.btn-primary.active:focus,
+.login-buttons.btn-primary.active:hover,
+.login-buttons.btn-primary:active.focus,
+.login-buttons.btn-primary:active:focus,
+.login-buttons.btn-primary:active:hover {
+  background-color: #c4c0be;
+  border: #c4c0be;
+}
