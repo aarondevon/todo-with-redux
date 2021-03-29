@@ -1,16 +1,16 @@
-@import "../../styles/common/colors";
+@import '../../styles/common/colors';
 
 .button {
-  background-color: $dark-blue;
+  background-color: $primary-button;
   border: none;
   border-radius: 30px;
   color: $white;
   font-weight: bold;
   font-size: 1rem;
-  margin: .5rem;
-  padding: .75rem;
+  margin: 0.5rem;
+  padding: 0.75rem;
 }
 
 .delete {
-  background: $red;
+  background: $delete-button;
 }
